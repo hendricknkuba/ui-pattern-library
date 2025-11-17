@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pattern Library – LiveWire</title>
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header-pattern">
+        <img src="img/livewire.png" alt="LiveWire Logo" class="logo">
+        <h1>Pattern Library</h1>
+    </header>
+
+    <main class="container">
+
+        <!-- ================= COLOR PALETTE ================= -->
+        <section>
+            <h2>Color Palette</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background:#FF0009">
+                    <p>#FF0009<br>Brand Red</p>
+                </div>
+
+                <div class="color-swatch" style="background:#004BFF">
+                    <p>#004BFF<br>Triad Blue</p>
+                </div>
+
+                <div class="color-swatch" style="background:#00FF85">
+                    <p>#00FF85<br>Triad Green</p>
+                </div>
+
+                <div class="color-swatch" style="background:#1A1A1A; color:white">
+                    <p>#1A1A1A<br>Dark Gray</p>
+                </div>
+
+                <div class="color-swatch" style="background:#F5F5F5">
+                    <p>#F5F5F5<br>Light Gray</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TYPOGRAPHY ================= -->
+        <section>
+            <h2>Typography</h2>
+
+            <h3>Sans-Serif (Interface)</h3>
+            <p class="sans-example">Inter – Used for headers, menus, UI elements</p>
+
+            <h3>Serif (Charts)</h3>
+            <p class="serif-example">Merriweather – Used in dashboard charts and data labels</p>
+
+            <div class="type-scale">
+                <h1>H1 – Heading</h1>
+                <h2>H2 – Heading</h2>
+                <h3>H3 – Heading</h3>
+                <p>Paragraph text example showing the standard type size.</p>
+            </div>
+        </section>
+
+        <!-- ================= BUTTONS ================= -->
+        <section>
+            <h2>Buttons</h2>
+
+            <button class="btn primary">Primary Button</button>
+            <button class="btn secondary">Secondary Button</button>
+            <button class="btn outline">Outline Button</button>
+            <button class="btn disabled" disabled>Disabled Button</button>
+        </section>
+
+        <!-- ================= INPUTS ================= -->
+        <section>
+            <h2>Inputs</h2>
+
+            <label class="input-label">Email</label>
+            <input type="text" class="input-field" placeholder="example@domain.com">
+
+            <label class="input-label">Search</label>
+            <input type="text" class="input-field" placeholder="Type here...">
+        </section>
+
+        <!-- ================= NAVIGATION ================= -->
+        <section>
+            <h2>Navigation Styles</h2>
+
+            <nav class="nav-demo">
+                <a href="#" class="active">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">Charts</a>
+                <a href="#">Settings</a>
+            </nav>
+        </section>
+
+        <!-- ================= ICONS ================= -->
+        <section>
+            <h2>Icons</h2>
+            <div class="icon-set">
+                <i class="fa-solid fa-chart-pie"></i>
+                <i class="fa-solid fa-chart-line"></i>
+                <i class="fa-solid fa-users"></i>
+                <i class="fa-solid fa-bell"></i>
+                <i class="fa-solid fa-gear"></i>
+            </div>
+        </section>
+
+        <!-- ================= LAYOUT ================= -->
+        <section>
+            <h2>Layout System</h2>
+
+            <p>We use a 12-column CSS Grid layout with consistent spacing.</p>
+
+            <ul>
+                <li>Grid: 12 columns</li>
+                <li>Spacing scale: 4 / 8 / 12 / 16 / 24 / 32</li>
+                <li>Container max-width: 1200px</li>
+            </ul>
+        </section>
+
+    </main>
+
+</body>
+</html>

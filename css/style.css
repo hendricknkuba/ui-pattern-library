@@ -1,0 +1,150 @@
+/* ==========================
+   BASE STYLES
+========================== */
+:root {
+    --brand-red: #FF0009;
+    --triad-blue: #004BFF;
+    --triad-green: #00FF85;
+
+    --dark: #1A1A1A;
+    --light: #F5F5F5;
+    --white: #FFFFFF;
+
+    --radius: 8px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: white;
+    color: var(--dark);
+    margin: 0;
+}
+
+/* ==========================
+   HEADER PATTERN
+========================== */
+.header-pattern {
+    background: linear-gradient(135deg, #FF0009, #004BFF);
+    padding: 40px;
+    text-align: center;
+    color: white;
+}
+
+.header-pattern .logo {
+    height: 150px;
+    margin-bottom: 5px;
+}
+
+
+/* ==========================
+   COLOR PALETTE
+========================== */
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+}
+
+.color-swatch {
+    padding: 20px;
+    border-radius: var(--radius);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ==========================
+   TYPOGRAPHY
+========================== */
+.sans-example {
+    font-family: 'Inter', sans-serif;
+}
+
+.serif-example {
+    font-family: 'Merriweather', serif;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+.btn {
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 10px;
+    transition: 0.25s ease;
+}
+
+.btn.primary {
+    background: var(--brand-red);
+    color: white;
+}
+
+.btn.primary:hover {
+    background: #cc0007;
+}
+
+.btn.secondary {
+    background: var(--triad-blue);
+    color: white;
+}
+
+.btn.secondary:hover {
+    opacity: 0.85;
+}
+
+.btn.outline {
+    border: 2px solid var(--brand-red);
+    background: transparent;
+    color: var(--brand-red);
+}
+
+.btn.outline:hover {
+    background: var(--brand-red);
+    color: white;
+}
+
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==========================
+   INPUTS
+========================== */
+.input-field {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--dark);
+    padding: 10px 0;
+    margin-bottom: 24px;
+    font-size: 16px;
+}
+
+.input-field:focus {
+    border-bottom-color: var(--brand-red);
+    outline: none;
+}
+
+/* ==========================
+   NAVIGATION
+========================== */
+.nav-demo a {
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--dark);
+    padding-bottom: 4px;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+}
+
+.nav-demo a:hover {
+    color: var(--brand-red);
+}
+
+.nav-demo a.active {
+    color: var(--brand-red);
+    border-bottom: 3px solid var(--brand-red);
+}
