@@ -98,4 +98,21 @@ body {
   color: #888;
 }
 
+/* -------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+------------------------------------------------------- */
+@media (max-width: 600px) {
+  .top-header {
+    padding: 1rem;
+  }
+  
+  .dashboard-container {
+    padding: 1rem;
+  }
+  
+  .chart-card {
+    padding: 0.9rem;
+  }
+}
+is this neccessary or can it be deletd
 
