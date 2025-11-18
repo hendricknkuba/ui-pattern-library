@@ -58,9 +58,9 @@ body {
 /* Dashboard Grid */
 .dashboard-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 3 columns */
-  gap: 1rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 1.3rem;
+  padding: 1.5rem 2rem;
 }
 
 /* Chart Cards */
@@ -98,20 +98,4 @@ body {
   color: #888;
 }
 
-/* -------------------------------------------------------
-   RESPONSIVE ADJUSTMENTS
-------------------------------------------------------- */
-@media (max-width: 600px) {
-  .top-header {
-    padding: 1rem;
-  }
-  
-  .dashboard-container {
-    padding: 1rem;
-  }
-  
-  .chart-card {
-    padding: 0.9rem;
-  }
-}
 
