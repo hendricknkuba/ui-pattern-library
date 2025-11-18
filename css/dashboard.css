@@ -15,8 +15,8 @@ body {
 
 /* Header & Nav Bar*/
 .top-header {
-  /* electric blue → purple gradient */
-  background: linear-gradient(90deg, #3B82F6, #9F00FF);
+  /* deep electric blue → purple gradient */
+  background: linear-gradient(90deg, #2A4FFF, #7B00C8);
   color: white;
   padding: 1.2rem 2rem;
   display: flex;
@@ -47,14 +47,13 @@ body {
   color: white;
   font-size: 0.9rem;
   padding: 0.4rem 0.8rem;
-  background-color: #3B82F6;        /* electric blue buttons */
+  background-color: #374151;        /* neutral charcoal buttons */
   border-radius: 5px;
-  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
 }
 
 .main-nav a:hover {
-  background-color: #FACC15;        /* golden yellow hover */
-  color: #1F2937;                   /* dark text on yellow */
+  background-color: #4B5563;        /* lighter charcoal hover */
 }
 
 /* Dashboard Grid */
@@ -67,7 +66,7 @@ body {
 
 /* Chart Cards */
 .chart-card {
-  background-color: #FFFFFF;        /* white cards on white page */
+  background-color: #FFFFFF;        /* white cards */
   border-radius: 10px;
   padding: 1rem 1.2rem;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.05);
@@ -97,6 +96,6 @@ body {
   padding: 1rem;
   text-align: center;
   font-size: 0.85rem;
-  color: #6B7280;                   /* softer grey for footer text */
+  color: #6B7280;                   /* soft grey footer text */
 }
 
