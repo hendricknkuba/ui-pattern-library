@@ -1,6 +1,5 @@
-/* -------------------------------------------------------
-   GLOBAL RESET + BASE STYLES
-------------------------------------------------------- */
+/* Bse Styling */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,11 +13,9 @@ body {
   line-height: 1.4;
 }
 
-/* -------------------------------------------------------
-   HEADER + NAVIGATION
-------------------------------------------------------- */
+/* Header & Nav Bar*/
 .top-header {
-  background-color: #1f2937; /* dark gray/navy */
+  background-color: #1f2937; /*navy grey*/
   color: white;
   padding: 1.2rem 2rem;
   display: flex;
@@ -58,19 +55,15 @@ body {
   background-color: #4b5563;
 }
 
-/* -------------------------------------------------------
-   MAIN DASHBOARD GRID
-------------------------------------------------------- */
+/* Dashboard Grid */
 .dashboard-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  gap: 1.3rem;
-  padding: 1.5rem 2rem;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 columns */
+  gap: 1rem;
+  padding: 1rem;
 }
 
-/* -------------------------------------------------------
-   INDIVIDUAL CHART CARDS
-------------------------------------------------------- */
+/* Chart Cards */
 .chart-card {
   background-color: #f0f4f8;
   border-radius: 10px;
@@ -96,15 +89,8 @@ body {
   align-items: center;
 }
 
-/* Temporary styling for debugging:
-.chart-area {
-  border: 1px dashed lightgray;
-}
-*/
 
-/* -------------------------------------------------------
-   FOOTER
-------------------------------------------------------- */
+/* Footer */
 .footer {
   padding: 1rem;
   text-align: center;
@@ -112,19 +98,4 @@ body {
   color: #888;
 }
 
-/* -------------------------------------------------------
-   RESPONSIVE ADJUSTMENTS
-------------------------------------------------------- */
-@media (max-width: 600px) {
-  .top-header {
-    padding: 1rem;
-  }
-  
-  .dashboard-container {
-    padding: 1rem;
-  }
-  
-  .chart-card {
-    padding: 0.9rem;
-  }
-}
+
