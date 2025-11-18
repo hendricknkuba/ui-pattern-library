@@ -56,12 +56,21 @@ body {
 }
 
 /* Dashboard Grid */
-.dashboard-container {
+/*.dashboard-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 1.3rem;
   padding: 1.5rem 2rem;
+}*/
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;  /* stack cards vertically */
+  gap: 1.3rem;
+  padding: 1.5rem 2rem;
 }
+
+
 
 /* Chart Cards */
 .chart-card {
