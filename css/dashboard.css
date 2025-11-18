@@ -43,16 +43,18 @@ body {
 }
 
 /* OPTION 1 — Light Cool Grey Buttons */
+
 .main-nav a {
   text-decoration: none;
-  color: #1F2937;              /* dark text on grey */
+  color: #1F2937;
   font-size: 0.9rem;
+  font-weight: 700;     /* TRUE bold for Arial */
   padding: 0.4rem 0.8rem;
-  font-weight: 600;
-  background-color: #E5E7EB;   /* light cool grey */
+  background-color: #E5E7EB;
   border-radius: 5px;
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
+
 
 .main-nav a:hover {
   background-color: #D1D5DB;   /* slightly darker grey */
