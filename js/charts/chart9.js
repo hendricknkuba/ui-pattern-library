@@ -42,12 +42,12 @@ function chart9_channelMostSubscribers(youtubeData) {
   chart9Area.innerHTML = `
     <div style="
       background: white;
-      padding: 25px;
+      padding: 26px;
       border-radius: 14px;
       text-align: center;
       border: 1px solid #eee;
       box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
-      max-width: 320px;
+      max-width: 330px;
       margin: 0 auto;
     ">
       
