@@ -1,14 +1,4 @@
-/*  
-==========================================
-   DASHBOARD JS – DATA ENGINEER (James)
-   Project 1 – D3 Setup + Data Handling
-==========================================
-*/
 
-// ----------------------------
-// 1. GLOBAL COLOR SYSTEM
-// Matches pattern-library color palette
-// ----------------------------
 const brandColors = {
     red: "#D72638",
     blue: "#1B3B6F",
@@ -30,7 +20,9 @@ const categoryColor = d3.scaleOrdinal()
 async function loadData() {
     try {
         const youtubeData = await d3.csv("data/top_100_youtubers.csv", d => cleanYouTubeRow(d));
-        const avgViewData = await d3.csv("data/avg_view_every_year.csv", d => cleanAvgViewRow(d));
+        let avgViewRows = await d3.csv("data/avg_view_every_year.csv", d => cleanAvgViewRow(d));
+        const avgViewData = avgViewRows.flat();
+
 
         console.log("✔ Data Loaded Successfully:");
         console.log("YouTubers:", youtubeData.length, "rows");
@@ -60,12 +52,26 @@ function cleanYouTubeRow(row) {
 }
 
 function cleanAvgViewRow(row) {
-    return {
-        channel_title: row.channel_title,
-        year: +row.year,
-        avg_views: +row.avg_views
-    };
+    const year = +row.year;
+
+    const entries = [];
+
+    // Loop through every column except 'year'
+    for (const key in row) {
+        if (key !== "year") {
+            const value = row[key].trim() === "" ? null : +row[key];
+
+            entries.push({
+                year: year,
+                channel_title: key,
+                avg_views: value
+            });
+        }
+    }
+
+    return entries;
 }
+
 
 
 // ----------------------------
