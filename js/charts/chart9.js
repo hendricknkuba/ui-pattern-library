@@ -69,7 +69,7 @@ function chart9_channelMostSubscribers(youtubeData) {
         margin: 0;
         line-height: 1.1;
       ">
-        ${d3.format(".2s")(maxChannel.subscribers)}
+        0
       </p>
 
       <!-- Label below -->
@@ -108,7 +108,7 @@ function animateCountUp(element, endValue, duration = 1200) {
 
     const currentValue = Math.floor(startValue + easedProgress * endValue);
 
-    element.textContent = d3.format(".2s")(currentValue);
+    element.textContent = formatLarge(currentValue);
 
     if (progress < 1) {
       requestAnimationFrame(update);
