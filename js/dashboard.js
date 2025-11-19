@@ -95,33 +95,20 @@ function makeResponsive(svg) {
        .attr("viewBox", `0 0 ${svg.attr("width")} ${svg.attr("height")}`);
 }
 
+// Show Back to Top button on scroll
+document.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const fullHeight = document.body.scrollHeight;
 
-// ----------------------------
-// 5. CHART FUNCTION PLACEHOLDERS
-// Created by Devs 3, 4, 5 in Project 2
-// ----------------------------
+    const btn = document.querySelector(".back-to-top");
 
-function chart1_proportionCategories(data) {
-    // TODO: Chart developer will build this in Project 2
-}
-
-function chart2_likesVsSubscribers(data) {
-    // TODO: Brushing added by Hendrick in Project 2
-}
-
-function chart3_youtubersPerCountry(data) {
-    // TODO
-}
-
-function chart4_top5ChannelsByYear(data) {
-    // TODO
-}
-
-function chart5_quarterlyIncome(data) {
-    // TODO
-}
-
-
+    if (scrollY + viewportHeight >= fullHeight * 0.80) {
+        btn.classList.add("show");
+    } else {
+        btn.classList.remove("show");
+    }
+});
 
 // ----------------------------
 // 6. CONSOLE TESTS (Project 1 requirement)
