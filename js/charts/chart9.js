@@ -65,7 +65,7 @@ function chart9_channelMostSubscribers(youtubeData) {
       <p style="
         font-size: 42px;
         font-weight: bold;
-        color: #D72638;
+        color: #FF0009;
         margin: 0;
         line-height: 1.1;
       ">
