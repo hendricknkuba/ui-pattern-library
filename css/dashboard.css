@@ -1,8 +1,9 @@
-/* Base Styling */
+/* Base Style */
+
 :root {
   --brand-red: #FF0009;
   --triad-blue: #004BFF;
-  --triad-green: #00FF85; /* header bottom only*/
+  --triad-green: #00FF85; 
   --dark-gray: #1A1A1A;
   --light-gray: #F5F5F5;
 }
@@ -21,7 +22,7 @@ body {
 }
 
 
-/* Header & Navigation */
+/*  Header */
 
 .top-header {
   background: linear-gradient(90deg, var(--triad-blue), var(--brand-red));
@@ -30,6 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
   border-bottom: 4px solid var(--triad-green);
 }
 
@@ -44,7 +46,7 @@ body {
   width: auto;
 }
 
-/* Nav Bar */
+/* NAV BUTTONS */
 .main-nav {
   display: flex;
   flex-wrap: wrap;
@@ -58,7 +60,7 @@ body {
   font-size: 0.9rem;
   font-weight: 700;
   padding: 0.4rem 0.8rem;
-  background-color: var(--light-gray);
+  background-color: #FFFFFF;
   border-radius: 5px;
   border: 2px solid transparent;
   transition:
@@ -67,20 +69,22 @@ body {
     border-color 0.2s ease-in-out;
 }
 
+/* Hover */
 .main-nav a:hover {
-  background-color: #d8e3ff;
+  background-color: #e8f0ff;
   color: #000;
   border-color: var(--triad-blue);
 }
 
+
 .main-nav a.active {
-  background-color: var(--triad-blue);
-  color: #FFFFFF;
-  border-color: var(--brand-red);
+  background-color: #FFFFFF;
+  color: var(--dark-gray);
+  border-color: var(--triad-blue); 
 }
 
 
-/* Dashboard Layout */
+/* Dashboard Layout*/
 
 .dashboard-container {
   display: flex;
@@ -90,7 +94,7 @@ body {
 }
 
 
-/* Chart Cards */
+/* Chart Cards*/
 
 .chart-card {
   background-color: #FFFFFF;
@@ -105,14 +109,19 @@ body {
   min-height: 260px;
 }
 
+/* Chart Title */
 .chart-card h2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 0.8rem;
+
+
   color: black;
+
   border: none;
   padding-bottom: 0;
 }
 
+/* Inside chart area */
 .chart-area {
   flex: 1;
   min-height: 200px;
@@ -157,7 +166,7 @@ h3 {
 }
 
 
-/* Footer */
+/* Footer  */
 
 .footer {
   padding: 1rem;
@@ -166,3 +175,53 @@ h3 {
   color: #6B7280;
 }
 
+/* Back to top button */
+
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--brand-red);
+  color: white;
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  background-color: #cc0007;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.chart-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 2px solid var(--light);
+    margin-bottom: 30px;
+}
+
+.chart-nav a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--dark);
+    padding-bottom: 4px;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s ease;
+}
+
+.chart-nav a:hover {
+    color: var(--brand-red);
+    border-bottom: 3px solid var(--brand-red);
+}
