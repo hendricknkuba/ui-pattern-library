@@ -139,5 +139,6 @@ loadData().then(data => {
     chart9_channelMostSubscribers(data.youtubeData)
     chart8_countryWithMostYoutubers(data.youtubeData);
     chart7_categoryMostFollowers(data.youtubeData);
+    chart6_categoryByCountry(data.youtubeData);
 });
 
