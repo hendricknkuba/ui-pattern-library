@@ -60,7 +60,7 @@ function chart8_countryWithMostYoutubers(youtubeData) {
       <p id="chart8-value" style="
         font-size: 44px;
         font-weight: bold;
-        color: #1B3B6F;
+        color: #1A1A1A;
         margin: 0;
         line-height: 1.1;
       ">0</p>
