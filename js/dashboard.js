@@ -69,7 +69,7 @@ function cleanAvgViewRow(row) {
     }
 
     return entries;
-    
+
 }
 
 // ----------------------------
@@ -78,8 +78,9 @@ function cleanAvgViewRow(row) {
 // ----------------------------
 
 // Format axis values (ex: 1,500,000 → "1.5M")
-const formatLargeNumber = d3.format(".2s");
-
+function formatLarge(value) {
+  return d3.format(".2s")(value).replace("G", "B");
+}
 // Format regular numbers
 const formatComma = d3.format(",");
 
@@ -136,5 +137,7 @@ loadData().then(data => {
     console.log("Grouped by Country:", groupBy(data.youtubeData, "country"));
 
     chart9_channelMostSubscribers(data.youtubeData)
+    chart8_countryWithMostYoutubers(data.youtubeData);
+    chart7_categoryMostFollowers(data.youtubeData);
 });
 
