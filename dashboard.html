@@ -5,12 +5,16 @@
   <title>LiveWire Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Linking CSS -->
-  <link rel="stylesheet" href="css/dashboard.css">
+  <!-- Linking google fonts: Inter (sans-serif) + Merriweather (serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
 
-  <!-- D3.js Library -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="js/dashboard.js"></script>
+  <!-- Dashboard CSS -->
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
 <body>
@@ -23,7 +27,7 @@
     </div>
 
     <nav class="main-nav">
-      <a href="#chart1">Chart 1</a>
+      <a href="#chart1" class="active">Chart 1</a>
       <a href="#chart2">Chart 2</a>
       <a href="#chart3">Chart 3</a>
       <a href="#chart4">Chart 4</a>
@@ -35,63 +39,63 @@
     </nav>
   </header>
 
-  <!-- Grid where the charts are-->
+  <!-- Grid charts -->
   <main class="dashboard-container">
 
     <section id="chart1" class="chart-card">
       <h2>Chart 1: Proportion of Categories</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart1-area"></div>
     </section>
 
     <section id="chart2" class="chart-card">
       <h2>Chart 2: Likes vs Subscribers</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart2-area"></div>
     </section>
 
     <section id="chart3" class="chart-card">
       <h2>Chart 3: YouTubers per Country</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart3-area"></div>
     </section>
 
     <section id="chart4" class="chart-card">
       <h2>Chart 4: Top 5 Channels - Average Views by Year</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart4-area"></div>
     </section>
 
     <section id="chart5" class="chart-card">
       <h2>Chart 5: Quarterly Income</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart5-area"></div>
     </section>
 
     <section id="chart6" class="chart-card">
-      <div id="chart6">
-      <h2 id="chart6-title" class="chart-title">Chart 6: Channels by Category in IN</h3>
+      <h2 id="chart6-title" class="chart-title">
+        Chart 6: Channels by Category in IN
+      </h2>
 
       <input 
         id="chart6-country-input" 
         type="text" 
         placeholder="Type country code (e.g., US, IN)" 
         maxlength="2"
-        style="margin-bottom: 10px; padding: 6px; width: 120px;"
+        style="margin-bottom: 10px; padding: 6px; width: 200px;"
       />
 
-      <div class="chart-area"></div>
-    </div>
+      <div class="chart-area" id="chart6-area"></div>
     </section>
 
     <section id="chart7" class="chart-card">
       <h2>Chart 7: Category With Most Followers</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart7-area"></div>
     </section>
 
     <section id="chart8" class="chart-card">
       <h2>Chart 8: Country with Most YouTubers</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart8-area"></div>
     </section>
 
     <section id="chart9" class="chart-card">
       <h2>Chart 9: Most Subscribed Channel</h2>
-      <div class="chart-area"></div>
+      <div class="chart-area" id="chart9-area"></div>
     </section>
 
   </main>
@@ -99,13 +103,18 @@
   <footer class="footer">
     <p>&copy; 2025 Dashboard</p>
   </footer>
-  
+
+  <!-- Scripts -->
   <script>
     console.log("Dashboard HTML loaded");
   </script>
 
-  <!-- Linking the chart scripts -->
+  <!-- D3.js Library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 
+  <script src="js/dashboard.js"></script>
+
+  <!-- Individual chart scripts -->
   <script src="js/charts/chart1.js"></script>
   <script src="js/charts/chart2.js"></script>
   <script src="js/charts/chart3.js"></script>
@@ -117,5 +126,4 @@
   <script src="js/charts/chart9.js"></script>
 
 </body>
-
 </html>
