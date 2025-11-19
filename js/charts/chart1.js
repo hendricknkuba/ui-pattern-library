@@ -28,16 +28,20 @@ if (!chart1Area) {
     // Calculate total for percentage
     const total = d3.sum(chartData, d => d.count);
     
-    // Chart dimensions
-    const width = 500;
+    // Chart dimensions - responsive
+    const containerWidth = chart1Area.offsetWidth;
+    const isMobile = window.innerWidth <= 768;
+    const width = isMobile ? Math.min(containerWidth, 500) : 500;
     const height = 400;
-    const radius = Math.min(width, height) / 2 - 100;
+    const radius = Math.min(width, height) / 2 - (isMobile ? 60 : 100);
     
     // Create SVG
     const svg = d3.select(chart1Area)
       .append("svg")
       .attr("width", width)
       .attr("height", height)
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .append("g")
       .attr("transform", `translate(${width / 2}, ${height / 2 - 20})`);
     

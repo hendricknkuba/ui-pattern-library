@@ -27,71 +27,92 @@ function chart9_channelMostSubscribers(youtubeData) {
     return current.subscribers > max.subscribers ? current : max;
   });
 
-  // Get the chart area
-  const chart9Area = document.querySelector("#chart9 .chart-area");
-
-  if (!chart9Area) {
-    console.error("Chart 9 area not found");
-    return;
+  // Update KPI card at the top (1st stat card)
+  const kpiCard = document.querySelectorAll('.stat-card')[0];
+  if (kpiCard) {
+    const statValue = kpiCard.querySelector('.stat-value');
+    const statLabel = kpiCard.querySelector('.stat-label');
+    const statSpan = kpiCard.querySelector('span');
+    
+    if (statValue && statLabel) {
+      statValue.textContent = maxChannel.channel_title;
+      statLabel.textContent = 'Most Subscribed Channel';
+      if (statSpan) {
+        statSpan.textContent = `${(maxChannel.subscribers / 1000000).toFixed(0)}M Subscribers`;
+        statSpan.style.fontSize = '0.875rem';
+        statSpan.style.color = '#666';
+        statSpan.style.display = 'block';
+        statSpan.style.marginTop = '4px';
+      }
+    }
   }
 
-  // Clear any existing content
-  chart9Area.innerHTML = "";
+  // Get the chart area
+//   const chart9Area = document.querySelector("#chart9 .chart-area");
 
- // Render single-value metric card
-  chart9Area.innerHTML = `
-    <div style="
-      background: white;
-      padding: 26px;
-      border-radius: 14px;
-      text-align: center;
-      border: 1px solid #eee;
-      box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
-      max-width: 330px;
-      margin: 0 auto;
-    ">
+//   if (!chart9Area) {
+//     console.error("Chart 9 area not found");
+//     return;
+//   }
+
+//   // Clear any existing content
+//   chart9Area.innerHTML = "";
+
+//  // Render single-value metric card
+//   chart9Area.innerHTML = `
+//     <div style="
+//       background: white;
+//       padding: 26px;
+//       border-radius: 14px;
+//       text-align: center;
+//       border: 1px solid #eee;
+//       box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
+//       max-width: 330px;
+//       margin: 0 auto;
+//     ">
       
-      <!-- Title -->
-      <p style="
-        font-family: serif;
-        font-size: 20px;
-        color: #111;
-        margin-bottom: 10px;
-      ">
-        Most Subscribed Channel
-      </p>
+//       <!-- Title -->
+//       <p style="
+//         font-family: 'Merriweather', serif;
+//         font-size: 20px;
+//         color: #111;
+//         margin-bottom: 10px;
+//       ">
+//         Most Subscribed Channel
+//       </p>
 
-      <!-- Big number -->
-      <p style="
-        font-size: 42px;
-        font-weight: bold;
-        color: #FF0009;
-        margin: 0;
-        line-height: 1.1;
-      ">
-        0
-      </p>
+//       <!-- Big number -->
+//       <p style="
+//         font-size: 42px;
+//         font-weight: bold;
+//         color: #FF0009;
+//         margin: 0;
+//         line-height: 1.1;
+//       ">
+//         0
+//       </p>
 
-      <!-- Label below -->
-      <p style="
-        font-size: 18px;
-        color: #333;
-        margin-top: 6px;
-      ">
-        ${maxChannel.channel_title}
-      </p>
+//       <!-- Label below -->
+//       <p style="
+//         font-size: 18px;
+//         color: #333;
+//         margin-top: 6px;
+//         font-weight: 600;
+//       ">
+//         ${maxChannel.channel_title}
+//       </p>
 
-    </div>
-  `;
+//     </div>
+//   `;
 
   // Get the number element
   const numberElement = document.querySelector("#chart9 .chart-area p:nth-of-type(2)");
 
   // Store final value in attribute
-  numberElement.setAttribute("data-value", maxChannel.subscribers);
+  // numberElement.setAttribute("data-value", maxChannel.subscribers);
 
   // Start observing for scroll-into-view animation
-  chart9_observer.observe(numberElement);
+  // chart9_observer.observe(numberElement);
 }
 
 // Smooth count-up animation for single value metrics

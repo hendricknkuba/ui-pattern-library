@@ -23,9 +23,11 @@ if (!chart2Area) {
       .filter(d => d.subscribers > 0 && d.likes > 0)
       .slice(0, 30); // Top 30 for clarity
     
-    // Chart dimensions
+    // Chart dimensions - responsive
+    const containerWidth = chart2Area.offsetWidth;
+    const isMobile = window.innerWidth <= 768;
     const margin = {top: 20, right: 20, bottom: 50, left: 60};
-    const width = 500 - margin.left - margin.right;
+    const width = (isMobile ? Math.min(containerWidth - 40, 500) : 500) - margin.left - margin.right;
     const height = 350 - margin.top - margin.bottom;
     
     // Create SVG
@@ -33,6 +35,8 @@ if (!chart2Area) {
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
+      .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
     

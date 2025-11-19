@@ -23,9 +23,11 @@ if (!chart4Area) {
       }))
     }));
     
-    // Chart dimensions
-    const margin = {top: 20, right: 120, bottom: 50, left: 70};
-    const width = 600 - margin.left - margin.right;
+    // Chart dimensions - responsive
+    const containerWidth = chart4Area.offsetWidth;
+    const isMobile = window.innerWidth <= 768;
+    const margin = {top: 20, right: isMobile ? 80 : 120, bottom: 50, left: 60};
+    const width = (isMobile ? Math.min(containerWidth - 40, 600) : 600) - margin.left - margin.right;
     const height = 350 - margin.top - margin.bottom;
     
     // Create SVG
@@ -33,6 +35,8 @@ if (!chart4Area) {
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
+      .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
     
