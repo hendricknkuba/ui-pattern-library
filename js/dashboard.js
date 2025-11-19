@@ -1,4 +1,3 @@
-
 const brandColors = {
     red: "#D72638",
     blue: "#1B3B6F",
@@ -42,12 +41,12 @@ async function loadData() {
 // ----------------------------
 function cleanYouTubeRow(row) {
     return {
-        channel_title: row.channel_title,
-        subscribers: +row.subscribers,
-        views: +row.views,
-        likes: +row.likes,
-        category: row.category || "Unknown",
-        country: row.country || "Unknown"
+        channel_title: row.ChannelName,
+        subscribers: +row.followers,
+        views: +row.Views,
+        likes: +row.Likes,
+        category: row.Category || "Unknown",
+        country: row.Country || "Unknown"
     };
 }
 
@@ -71,8 +70,6 @@ function cleanAvgViewRow(row) {
 
     return entries;
 }
-
-
 
 // ----------------------------
 // 4. SHARED HELPER FUNCTIONS
@@ -122,21 +119,6 @@ function chart5_quarterlyIncome(data) {
     // TODO
 }
 
-function chart6_categoryByCountry(data) {
-    // TODO: Interactive filtering
-}
-
-function chart7_categoryMostFollowers(data) {
-    // TODO 
-}
-
-function chart8_countryWithMostYoutubers(data) {
-    // TODO
-}
-
-function chart9_channelMostSubscribers(data) {
-    // TODO
-}
 
 
 // ----------------------------
@@ -146,10 +128,12 @@ function chart9_channelMostSubscribers(data) {
 loadData().then(data => {
     if (!data) return;
 
-    console.log("Sample YouTuber Record:", data.youtubeData[0]);
-    console.log("Sample Avg View Record:", data.avgViewData[0]);
+    console.log("Sample YouTuber Record:", data.youtubeData[1]);
+    console.log("Sample Avg View Record:", data.avgViewData[1]);
 
     console.log("Grouped by Category:", groupBy(data.youtubeData, "category"));
     console.log("Grouped by Country:", groupBy(data.youtubeData, "country"));
+
+    chart9_channelMostSubscribers(data.youtubeData)
 });
 
