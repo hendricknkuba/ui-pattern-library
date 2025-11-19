@@ -60,7 +60,7 @@ function chart7_categoryMostFollowers(youtubeData) {
       <p id="chart7-value" style="
         font-size: 44px;
         font-weight: bold;
-        color: #F4D35E;
+        color: #004BFF;
         margin: 0;
         line-height: 1.1;
       ">0</p>
