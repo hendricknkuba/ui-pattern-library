@@ -1,5 +1,5 @@
 // -------------------------------
-// Chart 7 JS File
+// Chart 7 JS File - Category with Most Followers
 // -------------------------------
 
 console.log("chart7.js loaded");
@@ -24,59 +24,72 @@ function chart7_categoryMostFollowers(youtubeData) {
     current.total > max.total ? current : max
   );
 
-  // Get container
-  const chart7Area = document.querySelector("#chart7 .chart-area");
-
-  if (!chart7Area) {
-    console.error("Chart 7 container not found!");
-    return;
+  // Update KPI card at the top (3rd stat card)
+  const kpiCard = document.querySelectorAll('.stat-card')[2];
+  if (kpiCard) {
+    const statValue = kpiCard.querySelector('.stat-value');
+    const statLabel = kpiCard.querySelector('.stat-label');
+    
+    if (statValue && statLabel) {
+      statValue.textContent = topCategory.category;
+      statLabel.textContent = `Top Category - ${(topCategory.total / 1000000).toFixed(1)}M Subscribers`;
+    }
   }
 
-  // Clear old content
-  chart7Area.innerHTML = "";
+  // Get container for detailed chart
+  // const chart7Area = document.querySelector("#chart7 .chart-area");
 
-  // Build the metric card
-  chart7Area.innerHTML = `
-    <div style="
-      background: white;
-      padding: 26px;
-      border-radius: 14px;
-      text-align: center;
-      border: 1px solid #eee;
-      box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
-      max-width: 330px;
-      margin: 0 auto;
-    ">
+  // if (!chart7Area) {
+  //   console.error("Chart 7 container not found!");
+  //   return;
+  // }
 
-      <p style="
-        font-family: serif;
-        font-size: 20px;
-        color: #111;
-        margin-bottom: 12px;
-      ">
-        Category with Most Followers
-      </p>
+  // // Clear old content
+  // chart7Area.innerHTML = "";
 
-      <p id="chart7-value" style="
-        font-size: 44px;
-        font-weight: bold;
-        color: #004BFF;
-        margin: 0;
-        line-height: 1.1;
-      ">0</p>
+  // // Build the detailed metric card
+  // chart7Area.innerHTML = `
+  //   <div style="
+  //     background: white;
+  //     padding: 26px;
+  //     border-radius: 14px;
+  //     text-align: center;
+  //     border: 1px solid #eee;
+  //     box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
+  //     max-width: 330px;
+  //     margin: 0 auto;
+  //   ">
 
-      <p style="
-        font-size: 18px;
-        color: #333;
-        margin-top: 6px;
-      ">
-        ${topCategory.category}
-      </p>
-    </div>
-  `;
+  //     <p style="
+  //       font-family: 'Merriweather', serif;
+  //       font-size: 20px;
+  //       color: #111;
+  //       margin-bottom: 12px;
+  //     ">
+  //       Category with Most Followers
+  //     </p>
 
-  // Animate number when visible
-  const valueElement = document.querySelector("#chart7-value");
-  valueElement.setAttribute("data-value", topCategory.total);
-  chart9_observer.observe(valueElement); // reuse existing intersection observer
+  //     <p id="chart7-value" style="
+  //       font-size: 44px;
+  //       font-weight: bold;
+  //       color: #00FF85;
+  //       margin: 0;
+  //       line-height: 1.1;
+  //     ">0</p>
+
+  //     <p style="
+  //       font-size: 18px;
+  //       color: #333;
+  //       margin-top: 6px;
+  //       font-weight: 600;
+  //     ">
+  //       ${topCategory.category}
+  //     </p>
+  //   </div>
+  // `;
+
+  // // Animate number when visible
+  // const valueElement = document.querySelector("#chart7-value");
+  // valueElement.setAttribute("data-value", topCategory.total);
+  // chart9_observer.observe(valueElement); // reuse existing intersection observer
 }

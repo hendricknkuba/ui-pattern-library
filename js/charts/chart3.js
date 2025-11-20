@@ -26,9 +26,11 @@ if (!chart3Area) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 10); // Top 10 countries
     
-    // Chart dimensions
+    // Chart dimensions - responsive
+    const containerWidth = chart3Area.offsetWidth;
+    const isMobile = window.innerWidth <= 768;
     const margin = {top: 20, right: 20, bottom: 60, left: 50};
-    const width = 500 - margin.left - margin.right;
+    const width = (isMobile ? Math.min(containerWidth - 40, 500) : 500) - margin.left - margin.right;
     const height = 350 - margin.top - margin.bottom;
     
     // Create SVG
@@ -36,6 +38,8 @@ if (!chart3Area) {
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
+      .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
     

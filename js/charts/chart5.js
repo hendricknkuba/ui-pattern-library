@@ -27,9 +27,11 @@ if (!chart5Area) {
     const quarters = ["Q1", "Q2", "Q3", "Q4"];
     const colors = ["#FF0009", "#004BFF", "#00FF85", "#7B00C8"];
     
-    // Chart dimensions
-    const margin = {top: 20, right: 80, bottom: 60, left: 150};
-    const width = 650 - margin.left - margin.right;
+    // Chart dimensions - responsive
+    const containerWidth = chart5Area.offsetWidth;
+    const isMobile = window.innerWidth <= 768;
+    const margin = {top: 20, right: isMobile ? 60 : 80, bottom: 60, left: isMobile ? 120 : 150};
+    const width = (isMobile ? Math.min(containerWidth - 40, 700) : 650) - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
     
     // Create SVG
@@ -37,6 +39,8 @@ if (!chart5Area) {
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
+      .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
     

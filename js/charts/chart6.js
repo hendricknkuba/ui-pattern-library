@@ -6,35 +6,53 @@ console.log("chart6.js loaded");
 
 function chart6_categoryByCountry(youtubeData) {
 
-const chart6Area = document.querySelector("#chart6 .chart-area");
-const countryInput = document.querySelector("#chart6-country-input");
-const titleElement = document.querySelector("#chart6-title");
+  const chart6Area = document.querySelector("#chart6 .chart-area");
+  const countrySelect = document.querySelector("#chart6-country-select");
+  const titleElement = document.querySelector("#chart6-title");
 
-if (!chart6Area || !countryInput) {
-   console.error("Chart 6 container or input not found!");
-   return;
-}
+  if (!chart6Area || !countrySelect) {
+    console.error("Chart 6 container or select not found!");
+    return;
+  }
 
-// SVG setup 
-const width = 500;
-const height = 300;
-const margin = { top: 30, right: 20, bottom: 40, left: 140 };
+  // Get unique countries from the dataset and populate dropdown dynamically
+  const uniqueCountries = [...new Set(youtubeData.map(d => d.country))].sort();
+  
+  // Clear existing options
+  countrySelect.innerHTML = '';
+  
+  // Add options for each country in the dataset
+  uniqueCountries.forEach(country => {
+    const option = document.createElement('option');
+    option.value = country;
+    option.textContent = country;
+    countrySelect.appendChild(option);
+  });
 
-const svg = d3.select(chart6Area)
+  // SVG setup - responsive
+  const containerWidth = chart6Area.offsetWidth;
+  const isMobile = window.innerWidth <= 768;
+  const width = isMobile ? Math.min(containerWidth, 500) : 500;
+  const height = 300;
+  const margin = { top: 30, right: 20, bottom: 40, left: isMobile ? 100 : 140 };
+
+  const svg = d3.select(chart6Area)
     .append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMidYMid meet");
 
-// Function to update chart based on selected country
-function updateChart(countryCode){
+  // Function to update chart based on selected country
+  function updateChart(countryCode) {
 
-  // Update title dynamically
-  titleElement.textContent = `Chart 6: Channels by Category in ${countryCode}`;
+    // Update title dynamically
+    // titleElement.textContent = `Chart 6: Channels by Category in ${countryCode}`;
 
-  // Filter dataset
-  const filtered = youtubeData.filter(d => d.country === countryCode);
+    // Filter dataset
+    const filtered = youtubeData.filter(d => d.country === countryCode);
 
-  // Group by category and count creators
+    // Group by category and count creators
     const grouped = d3.rollup(
       filtered,
       v => v.length,
@@ -46,7 +64,7 @@ function updateChart(countryCode){
       count
     }));
 
-     // Sort by count descending
+    // Sort by count descending
     data.sort((a, b) => b.count - a.count);
 
     // If no data, show message
@@ -56,6 +74,8 @@ function updateChart(countryCode){
         .attr("x", width / 2)
         .attr("y", height / 2)
         .attr("text-anchor", "middle")
+        .style("font-family", "'Merriweather', serif")
+        .style("fill", "#666")
         .text("No data for this country");
       return;
     }
@@ -108,12 +128,13 @@ function updateChart(countryCode){
       .call(d3.axisLeft(y));
   }
 
-  // Default country = US
-  updateChart("US");
+  // Default country = first in list (or US if available)
+  const defaultCountry = uniqueCountries.includes("US") ? "US" : uniqueCountries[0];
+  countrySelect.value = defaultCountry;
+  updateChart(defaultCountry);
 
-  // Listen for input changes
-  countryInput.addEventListener("input", e => {
-    const value = e.target.value.trim().toUpperCase();
-    if (value.length === 2) updateChart(value);
+  // Listen for dropdown changes
+  countrySelect.addEventListener("change", e => {
+    updateChart(e.target.value);
   });
 }
