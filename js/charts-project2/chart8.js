@@ -1,10 +1,9 @@
 // Chart 8 – Country with the Most YouTubers in the Top 100
 // File: js/charts-project2/chart8.js
 
-// Load CSV (update filename if needed)
 d3.csv("data/top_100_youtubers.csv").then(data => {
 
-    // Convert subscribers to number (if needed) and clean fields
+    // Convert subscribers to number (if needed) 
     data.forEach(d => {
         d.Country = d.Country || "Unknown";
     });
