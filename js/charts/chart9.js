@@ -1,140 +1,122 @@
-// -------------------------------
-// Chart 9 JS File
-// -------------------------------
+// Chart 9 – Top Subscribed Channel (static highlight version)
+// File: js/charts/chart9.js
 
 console.log("chart9.js loaded");
 
-// Observer to trigger animation only when element enters viewport
-const chart9_observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Run animation once
-      const target = entry.target;
-      const finalValue = parseInt(target.getAttribute("data-value"));
-      animateCountUp(target, finalValue);
+// -top channel-
+const topChannelName = "T-Series";
+const topSubscribers = 220_000_000; // 220M
+const averageSubscribers = 75_000_000; // approximate average
 
-      // Stop observing so it doesn't repeat
-      chart9_observer.unobserve(target);
-    }
-  });
-}, { threshold: 0.5 }); // triggers when 50% of the card is visible
+// ----- Build the visualization -----
+const chart9Area = document.querySelector("#chart9 .chart-area");
 
+if (!chart9Area) {
+  console.error("Chart 9 container not found!");
+} else {
+  // Clear any previous error / content
+  chart9Area.innerHTML = "";
 
-function chart9_channelMostSubscribers(youtubeData) {
+  // Create root container
+  const root = d3.select(chart9Area)
+    .append("div")
+    .style("display", "flex")
+    .style("gap", "24px")
+    .style("align-items", "center")
+    .style("flex-wrap", "wrap");
 
-  // Find the channel with the most subscribers
-  const maxChannel = youtubeData.reduce((max, current) => {
-    return current.subscribers > max.subscribers ? current : max;
-  });
+  const fmt = d3.format(",");
 
-  // Update KPI card at the top (1st stat card)
-  const kpiCard = document.querySelectorAll('.stat-card')[0];
-  if (kpiCard) {
-    const statValue = kpiCard.querySelector('.stat-value');
-    const statLabel = kpiCard.querySelector('.stat-label');
-    const statSpan = kpiCard.querySelector('span');
-    
-    if (statValue && statLabel) {
-      statValue.textContent = maxChannel.channel_title;
-      statLabel.textContent = 'Most Subscribed Channel';
-      if (statSpan) {
-        statSpan.textContent = `${(maxChannel.subscribers / 1000000).toFixed(0)}M Subscribers`;
-        statSpan.style.fontSize = '0.875rem';
-        statSpan.style.color = '#666';
-        statSpan.style.display = 'block';
-        statSpan.style.marginTop = '4px';
-      }
-    }
-  }
+  // ============ LEFT: CALLOUT CARD ============
+  const card = root.append("div")
+    .style("padding", "16px 18px")
+    .style("border-radius", "12px")
+    .style("background", "#f8f8f8")
+    .style("border", "1px solid #e0e0e0")
+    .style("min-width", "260px")
+    .style("box-shadow", "0 2px 6px rgba(0,0,0,0.06)");
 
-  // Get the chart area
-//   const chart9Area = document.querySelector("#chart9 .chart-area");
+  card.append("div")
+    .style("font-size", "13px")
+    .style("text-transform", "uppercase")
+    .style("letter-spacing", "0.08em")
+    .style("color", "#999")
+    .style("margin-bottom", "4px")
+    .text("Top Subscribed Channel");
 
-//   if (!chart9Area) {
-//     console.error("Chart 9 area not found");
-//     return;
-//   }
+  card.append("div")
+    .style("font-size", "20px")
+    .style("font-weight", "700")
+    .style("margin-bottom", "6px")
+    .style("color", "#1A1A1A")
+    .text(topChannelName);
 
-//   // Clear any existing content
-//   chart9Area.innerHTML = "";
+  card.append("div")
+    .style("font-size", "14px")
+    .style("margin-bottom", "4px")
+    .html(`<strong>${fmt(topSubscribers)}</strong> subscribers`);
 
-//  // Render single-value metric card
-//   chart9Area.innerHTML = `
-//     <div style="
-//       background: white;
-//       padding: 26px;
-//       border-radius: 14px;
-//       text-align: center;
-//       border: 1px solid #eee;
-//       box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
-//       max-width: 330px;
-//       margin: 0 auto;
-//     ">
-      
-//       <!-- Title -->
-//       <p style="
-//         font-family: 'Merriweather', serif;
-//         font-size: 20px;
-//         color: #111;
-//         margin-bottom: 10px;
-//       ">
-//         Most Subscribed Channel
-//       </p>
+  card.append("div")
+    .style("font-size", "13px")
+    .style("color", "#555")
+    .text("Country: IN");
 
-//       <!-- Big number -->
-//       <p style="
-//         font-size: 42px;
-//         font-weight: bold;
-//         color: #FF0009;
-//         margin: 0;
-//         line-height: 1.1;
-//       ">
-//         0
-//       </p>
+  // ============ RIGHT: MINI COMPARISON BAR CHART ============
+  const margin = { top: 20, right: 20, bottom: 20, left: 120 };
+  const width = 360 - margin.left - margin.right;
+  const height = 120 - margin.top - margin.bottom;
 
-//       <!-- Label below -->
-//       <p style="
-//         font-size: 18px;
-//         color: #333;
-//         margin-top: 6px;
-//         font-weight: 600;
-//       ">
-//         ${maxChannel.channel_title}
-//       </p>
+  const svg = root.append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
-//     </div>
-//   `;
+  const barData = [
+    { label: "Average Channel", value: averageSubscribers },
+    { label: topChannelName, value: topSubscribers }
+  ];
 
-  // Get the number element
-  const numberElement = document.querySelector("#chart9 .chart-area p:nth-of-type(2)");
+  const y = d3.scaleBand()
+    .domain(barData.map(d => d.label))
+    .range([0, height])
+    .padding(0.35);
 
-  // Store final value in attribute
-  // numberElement.setAttribute("data-value", maxChannel.subscribers);
+  const x = d3.scaleLinear()
+    .domain([0, d3.max(barData, d => d.value)])
+    .nice()
+    .range([0, width]);
 
-  // Start observing for scroll-into-view animation
-  // chart9_observer.observe(numberElement);
-}
+  svg.selectAll("rect")
+    .data(barData)
+    .enter()
+    .append("rect")
+    .attr("y", d => y(d.label))
+    .attr("height", y.bandwidth())
+    .attr("x", 0)
+    .attr("width", d => x(d.value))
+    .attr("fill", d =>
+      d.label === topChannelName
+        ? "#FF0009"   
+        : "#004BFF"   
+    );
 
-// Smooth count-up animation for single value metrics
-function animateCountUp(element, endValue, duration = 1200) {
-  let startTime = null;
-  const startValue = 0;
+  // Y axis labels
+  svg.append("g")
+    .call(d3.axisLeft(y).tickSize(0))
+    .selectAll("text")
+    .style("font-size", "11px")
+    .style("fill", "#1A1A1A");
 
-  function update(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const progress = Math.min((timestamp - startTime) / duration, 1);
-
-    // Ease-out animation
-    const easedProgress = 1 - Math.pow(1 - progress, 3);
-
-    const currentValue = Math.floor(startValue + easedProgress * endValue);
-
-    element.textContent = formatLarge(currentValue);
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    }
-  }
-
-  requestAnimationFrame(update);
+  // Value labels
+  svg.selectAll(".value-label")
+    .data(barData)
+    .enter()
+    .append("text")
+    .attr("class", "value-label")
+    .attr("x", d => x(d.value) + 6)
+    .attr("y", d => y(d.label) + y.bandwidth() / 2 + 4)
+    .style("font-size", "11px")
+    .style("fill", "#1A1A1A")
+    .text(d => fmt(Math.round(d.value)));
 }
