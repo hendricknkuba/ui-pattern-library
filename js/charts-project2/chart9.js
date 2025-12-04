@@ -120,3 +120,4 @@ if (!chart9Area) {
     .style("fill", "#1A1A1A")
     .text(d => fmt(Math.round(d.value)));
 }
+
