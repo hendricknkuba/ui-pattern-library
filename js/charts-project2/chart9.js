@@ -3,7 +3,7 @@
 
 d3.csv("data/top_100_youtubers.csv").then(data => {
 
-    // Ensure subscribers are numbers
+    // subscribers are numbers
     data.forEach(d => {
         d.Subscribers = +String(d.Subscribers).replace(/,/g, "");
         d.ChannelName = d.ChannelName || "Unknown";
