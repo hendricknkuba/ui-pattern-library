@@ -1,102 +1,150 @@
-// Chart 8 – Country with the Most YouTubers in the Top 100
-// File: js/charts-project2/chart8.js
+// -------------------------------
+// Chart 8: Country with the Most YouTubers (Top 10)
+// -------------------------------
 
-d3.csv("data/top_100_youtubers.csv").then(data => {
+console.log("chart8.js loaded");
 
-    // Convert subscribers to number (if needed) 
+const chart8Area = document.querySelector("#chart8 .chart-area");
+
+if (!chart8Area) {
+  console.error("Chart 8 container not found!");
+} else {
+  d3.csv("data/top_100_youtubers.csv").then(data => {
+    // Ensure Country field exists
     data.forEach(d => {
-        d.Country = d.Country || "Unknown";
+      d.Country = d.Country || "Unknown";
     });
 
-    // Count per country
-    const countryCounts = d3.rollup(
-        data,
-        v => v.length,
-        d => d.Country
+    // Count creators per country
+    const counts = d3.rollup(
+      data,
+      v => v.length,
+      d => d.Country
     );
 
-    // Convert map → array
-    let countryData = Array.from(countryCounts, ([Country, Count]) => ({ Country, Count }));
+    let countryData = Array.from(counts, ([Country, Count]) => ({ Country, Count }));
 
-    // Sort descending
+    // Sort descending by count
     countryData.sort((a, b) => d3.descending(a.Count, b.Count));
 
-    // Identify top country
     const topCountry = countryData[0];
 
-    // Chart dimensions
-    const margin = { top: 40, right: 20, bottom: 120, left: 70 };
-    const width = 800 - margin.left - margin.right;
-    const height = 450 - margin.top - margin.bottom;
+    // ----- Responsive dimensions -----
+    const containerWidth = chart8Area.offsetWidth || 650;
+    const isMobile = window.innerWidth <= 768;
 
-    // Create SVG inside #chart8
-    const svg = d3.select("#chart8")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+    const margin = {
+      top: 70,
+      right: isMobile ? 32 : 70,
+      bottom: 90,
+      left: 70
+    };
 
-    // X scale (countries)
+    const innerWidth = Math.min(containerWidth - 10, 720);
+    const width = innerWidth - margin.left - margin.right;
+    const height = 260 - margin.top - margin.bottom;
+
+    // ----- SVG -----
+    const svg = d3.select(chart8Area)
+      .html("")
+      .append("svg")
+      .attr("width", innerWidth)
+      .attr("height", height + margin.top + margin.bottom)
+      .attr("viewBox", `0 0 ${innerWidth} ${height + margin.top + margin.bottom}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // ----- Scales -----
     const x = d3.scaleBand()
-        .domain(countryData.map(d => d.Country))
-        .range([0, width])
-        .padding(0.2);
+      .domain(countryData.map(d => d.Country))
+      .range([0, width])
+      .padding(0.2);
 
-    // Y scale (counts)
     const y = d3.scaleLinear()
-        .domain([0, d3.max(countryData, d => d.Count)])
-        .range([height, 0])
-        .nice();
+      .domain([0, d3.max(countryData, d => d.Count) * 1.1])
+      .nice()
+      .range([height, 0]);
 
-    // Bars
-    svg.selectAll(".bar")
-        .data(countryData)
-        .enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr("x", d => x(d.Country))
-        .attr("y", d => y(d.Count))
-        .attr("width", x.bandwidth())
-        .attr("height", d => height - y(d.Count))
-        .attr("fill", d =>
-            d.Country === topCountry.Country ? "#ff7f0e" : "#1f77b4"
-        )
-        .attr("stroke", d =>
-            d.Country === topCountry.Country ? "black" : "none"
-        )
-        .attr("stroke-width", 1.2);
+    // ----- Bars -----
+    svg.selectAll("rect")
+      .data(countryData)
+      .enter()
+      .append("rect")
+      .attr("x", d => x(d.Country))
+      .attr("y", d => y(d.Count))
+      .attr("width", x.bandwidth())
+      .attr("height", d => height - y(d.Count))
+      .attr("fill", d =>
+        d.Country === topCountry.Country ? "#FF0009" : "#004BFF"
+      )
+      .attr("stroke", d =>
+        d.Country === topCountry.Country ? "#1A1A1A" : "none"
+      )
+      .attr("stroke-width", 1.2);
 
-    // X axis
+    // ----- X Axis -----
     svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x))
-        .selectAll("text")
-        .attr("transform", "rotate(-60)")
-        .style("text-anchor", "end")
-        .style("font-size", "10px");
+      .attr("transform", `translate(0,${height})`)
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .attr("transform", "rotate(-45)")
+      .style("text-anchor", "end")
+      .style("font-size", "10px")
+      .attr("dx", "-0.4em")
+      .attr("dy", "0.4em");
 
-    // Y axis
+    // ----- X Axis Label -----
+    svg.append("text")
+      .attr("x", width / 2)
+      .attr("y", height + 60)
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .style("fill", "#1A1A1A")
+      .text("Country");
+
+    // ----- Y Axis -----
     svg.append("g")
-        .call(d3.axisLeft(y));
+      .call(d3.axisLeft(y))
+      .selectAll("text")
+      .style("font-size", "10px");
 
-    // Title
+    // ----- Y Axis Label -----
     svg.append("text")
-        .attr("x", width / 2)
-        .attr("y", -15)
-        .attr("text-anchor", "middle")
-        .style("font-size", "18px")
-        .style("font-weight", "bold")
-        .text("Chart 8: Country With the Most YouTubers in Top 100");
+      .attr("transform", "rotate(-90)")
+      .attr("x", -height / 2)
+      .attr("y", -50)
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .style("fill", "#1A1A1A")
+      .text("Number of YouTubers");
 
-    // Label top country above bar
+    // ----- Title -----
     svg.append("text")
-        .attr("x", x(topCountry.Country) + x.bandwidth() / 2)
-        .attr("y", y(topCountry.Count) - 8)
-        .attr("text-anchor", "middle")
-        .style("font-size", "12px")
-        .style("font-weight", "bold")
-        .text(`${topCountry.Country} (${topCountry.Count})`);
+      .attr("x", width / 2)
+      .attr("y", -40)
+      .attr("text-anchor", "middle")
+      .style("font-size", "16px")
+      .style("font-weight", "700")
+      .style("fill", "#1A1A1A")
+      .text("Country with the Most YouTubers (Top 10)");
 
-});
+    // ----- FIXED TOP BAR LABEL (no overlap) -----
+    svg.append("text")
+      .attr("x", x(topCountry.Country) + x.bandwidth() / 2 + 12)  // shift right
+      .attr("y", y(topCountry.Count) - 16)                        // move higher
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .style("font-weight", "700")
+      .style("fill", "#1A1A1A")
+      .text(`${topCountry.Country} (${topCountry.Count})`);
+
+  }).catch(error => {
+    console.error("Error loading data for Chart 8:", error);
+    chart8Area.innerHTML = `
+      <p style="color: #FF0009; text-align:center; margin-top:24px;">
+        Error loading data for Chart 8
+      </p>`;
+  });
+}
 
