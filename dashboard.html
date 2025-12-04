@@ -62,8 +62,28 @@
 
   <!-- Dashboard Main Content -->
   <main class="dashboard-container">
+  <!-- Quick Navigation -->
+    <nav class="chart-nav">
+      <a href="#chart1"><i class="fa-solid fa-chart-pie"></i> Categories</a>
+      <a href="#chart2"><i class="fa-solid fa-heart"></i> Engagement</a>
+      <a href="#chart3"><i class="fa-solid fa-flag"></i> Geography</a>
+      <a href="#chart4"><i class="fa-solid fa-trending-up"></i> Trends</a>
+      <a href="#chart5"><i class="fa-solid fa-dollar-sign"></i> Revenue</a>
+      <a href="#chart6"><i class="fa-solid fa-filter"></i> Filter</a>
+      <!-- <a href="#chart7"><i class="fa-solid fa-crown"></i> Leaders</a>
+      <a href="#chart8"><i class="fa-solid fa-map"></i> Hotspots</a>
+      <a href="#chart9"><i class="fa-solid fa-trophy"></i> Champion</a> -->
+    </nav>
+  <!-- Unified Performance Overview -->
+  <section class="performance-overview" id="overview">
 
-    <!-- Stats Overview Section -->
+    <!-- Header -->
+    <div class="section-header">
+      <h2><i class="fa-solid fa-star"></i> Market Leaders</h2>
+      <p>Top channels, countries, and categories by performance</p>
+    </div>
+
+ <!-- Stats Overview Section -->
     <section class="stats-overview" id="overview">
       <div class="stat-card">
         <div class="stat-icon" style="background: linear-gradient(135deg, #FF0009, #FF6B9D);">
@@ -99,19 +119,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Quick Navigation -->
-    <nav class="chart-nav">
-      <a href="#chart1"><i class="fa-solid fa-chart-pie"></i> Categories</a>
-      <a href="#chart2"><i class="fa-solid fa-heart"></i> Engagement</a>
-      <a href="#chart3"><i class="fa-solid fa-flag"></i> Geography</a>
-      <a href="#chart4"><i class="fa-solid fa-trending-up"></i> Trends</a>
-      <a href="#chart5"><i class="fa-solid fa-dollar-sign"></i> Revenue</a>
-      <a href="#chart6"><i class="fa-solid fa-filter"></i> Filter</a>
-      <!-- <a href="#chart7"><i class="fa-solid fa-crown"></i> Leaders</a>
-      <a href="#chart8"><i class="fa-solid fa-map"></i> Hotspots</a>
-      <a href="#chart9"><i class="fa-solid fa-trophy"></i> Champion</a> -->
-    </nav>
+  </section>
 
     <!-- Section: Content Analysis -->
     <div class="section-header">
@@ -207,43 +215,11 @@
 
     <section id="chart5" class="chart-card chart-card-wide">
       <div class="chart-header">
-        <h3>Quarterly Income Analysis</h3>
+        <h3>Quarterly Income Analysis (Millions USD)</h3>
         <span class="chart-badge">Revenue</span>
       </div>
       <div class="chart-area"></div>
     </section>
-
-    <!-- Section: Top Performers -->
-    <!-- <div class="section-header">
-      <h2><i class="fa-solid fa-star"></i> Top Performers</h2>
-      <p>Leading channels and market dominance insights</p>
-    </div>
-
-    <div class="chart-grid-3">
-      <section id="chart7" class="chart-card">
-        <div class="chart-header">
-          <h3>Category Leader</h3>
-          <span class="chart-badge" style="background: #00FF85; color: #1A1A1A;">Most Followers</span>
-        </div>
-        <div class="chart-area"></div>
-      </section>
-
-      <section id="chart8" class="chart-card">
-        <div class="chart-header">
-          <h3>Geographic Leader</h3>
-          <span class="chart-badge" style="background: #004BFF;">Most Creators</span>
-        </div>
-        <div class="chart-area"></div>
-      </section>
-
-      <section id="chart9" class="chart-card">
-        <div class="chart-header">
-          <h3>Overall Champion</h3>
-          <span class="chart-badge" style="background: #FF0009;">Top Subscribed</span>
-        </div>
-        <div class="chart-area"></div>
-      </section>
-    </div> -->
 
   </main>
 
@@ -262,11 +238,11 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
 
   <!-- Individual chart scripts -->
-  <script src="js/charts/chart1.js"></script>
+  <script src="js/charts-project2/chart1.js"></script>
   <script src="js/charts/chart2.js"></script>
-  <script src="js/charts/chart3.js"></script>
-  <script src="js/charts/chart4.js"></script>
-  <script src="js/charts/chart5.js"></script>
+  <script src="js/charts-project2/chart3.js"></script>
+  <script src="js/charts-project2/chart4.js"></script>
+  <script src="js/charts-project2/chart5.js"></script>
   <script src="js/charts/chart6.js"></script>
   <script src="js/charts/chart7.js"></script>
   <script src="js/charts/chart8.js"></script>
