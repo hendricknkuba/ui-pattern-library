@@ -36,7 +36,6 @@
         </div>
       </div>
 
-      <!-- Hamburger Menu Button -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -69,7 +68,6 @@
         <div class="stat-icon" style="background: linear-gradient(135deg, #FF0009, #FF6B9D);">
           <i class="fa-solid fa-trophy"></i>
         </div>
-        <!-- Most Subscribed Channel KPI here -->
         <div class="stat-content">
           <h3 class="stat-value">Loading...</h3>
           <span></span>
@@ -81,7 +79,6 @@
         <div class="stat-icon" style="background: linear-gradient(135deg, #004BFF, #2A4FFF);">
           <i class="fa-solid fa-map-location-dot"></i>
         </div>
-        <!-- Country with most YouTubers KPI here -->
         <div class="stat-content">
           <h3 class="stat-value">Loading...</h3>
           <p class="stat-label">Country with Most YouTubers</p>
@@ -92,7 +89,6 @@
         <div class="stat-icon" style="background: linear-gradient(135deg, #00FF85, #00CC6A);">
           <i class="fa-solid fa-layer-group"></i>
         </div>
-        <!-- Top Category KPI here -->
         <div class="stat-content">
           <h3 class="stat-value">Loading...</h3>
           <p class="stat-label">Top Category by Subscribers</p>
@@ -108,9 +104,6 @@
       <a href="#chart4"><i class="fa-solid fa-trending-up"></i> Trends</a>
       <a href="#chart5"><i class="fa-solid fa-dollar-sign"></i> Revenue</a>
       <a href="#chart6"><i class="fa-solid fa-filter"></i> Filter</a>
-      <!-- <a href="#chart7"><i class="fa-solid fa-crown"></i> Leaders</a>
-      <a href="#chart8"><i class="fa-solid fa-map"></i> Hotspots</a>
-      <a href="#chart9"><i class="fa-solid fa-trophy"></i> Champion</a> -->
     </nav>
 
     <!-- Section: Content Analysis -->
@@ -157,14 +150,13 @@
           <h3>Channels by Category</h3>
           <span class="chart-badge">Filterable</span>
         </div>
+
         <div class="chart-controls">
           <label for="chart6-country-select" class="input-label">
             <i class="fa-solid fa-globe"></i> Select Country
           </label>
-          <select 
-            id="chart6-country-select" 
-            class="select-field"
-          >
+
+          <select id="chart6-country-select" class="select-field">
             <option value="US">United States</option>
             <option value="IN">India</option>
             <option value="GB">United Kingdom</option>
@@ -214,12 +206,14 @@
     </section>
 
     <!-- Section: Top Performers -->
-    <!-- <div class="section-header">
+    <div class="section-header">
       <h2><i class="fa-solid fa-star"></i> Top Performers</h2>
       <p>Leading channels and market dominance insights</p>
     </div>
 
     <div class="chart-grid-3">
+
+      <!-- Chart 7 Enabled -->
       <section id="chart7" class="chart-card">
         <div class="chart-header">
           <h3>Category Leader</h3>
@@ -243,7 +237,8 @@
         </div>
         <div class="chart-area"></div>
       </section>
-    </div> -->
+
+    </div>
 
   </main>
 
@@ -251,7 +246,6 @@
   <footer class="footer">
     <div class="footer-content">
       <p><strong>LiveWire Data Dashboard</strong> © 2025</p>
-      <!-- <p class="footer-subtitle">Professional YouTube Analytics Platform</p> -->
     </div>
     <a href="#top" class="back-to-top" id="backToTop">
       <i class="fa-solid fa-arrow-up"></i>
@@ -263,20 +257,19 @@
 
   <!-- Individual chart scripts -->
   <script src="js/charts/chart1.js"></script>
-  <script src="js/charts/chart2.js"></script>
+  <script src="js/charts-project2/chart2.js"></script>
   <script src="js/charts/chart3.js"></script>
   <script src="js/charts/chart4.js"></script>
   <script src="js/charts/chart5.js"></script>
   <script src="js/charts/chart6.js"></script>
-  <script src="js/charts/chart7.js"></script>
+  <script src="js/charts-project2/chart7.js"></script>
   <script src="js/charts/chart8.js"></script>
   <script src="js/charts/chart9.js"></script>
 
   <script src="js/dashboard.js"></script>
 
-  <!-- Smooth scroll and back-to-top functionality -->
+  <!-- Smooth scroll and menu behavior -->
   <script>
-    // Hamburger menu toggle
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mainNav = document.getElementById('mainNav');
 
@@ -285,7 +278,6 @@
       mainNav.classList.toggle('active');
     });
 
-    // Close menu when clicking on a nav link
     mainNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburgerBtn.classList.remove('active');
@@ -293,7 +285,6 @@
       });
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!hamburgerBtn.contains(e.target) && !mainNav.contains(e.target)) {
         hamburgerBtn.classList.remove('active');
@@ -301,21 +292,16 @@
       }
     });
 
-    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
 
-    // Back to top button visibility
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
